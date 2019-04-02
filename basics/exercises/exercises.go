@@ -40,4 +40,27 @@ func main() {
 	myVar = 5
 	fmt.Println(myVar)
 
+	bd := 1997
+
+	for bd <= 2019 {
+		fmt.Println(bd)
+		bd++
+	}
+
+	fmt.Println("---------")
+
+	bd = 1997
+	for {
+		if bd <= 2019 {
+			fmt.Println(bd)
+			bd++
+		} else {
+			break
+		}
+	}
+
+	for i := 10; i <= 100; i++ {
+		fmt.Println(i % 4)
+	}
+
 }
