@@ -9,3 +9,12 @@ Examples and exercises using Golang
   * Fast compile times.
   * Has its own garbage collector.
   * Compiled to standalone binaries.
+
+## Variable's declaration
+```go
+var i int // var variable_name type
+k := 99 // variable_name := value
+var I int // Package variable
+```
+
+
