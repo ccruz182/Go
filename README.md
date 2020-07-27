@@ -81,3 +81,20 @@ const (
   c
 )
 ```
+
+## Arrays
+They are continuous in memory.
+```go
+grades := [3]int{97, 85, 70} // Array with 3 elements
+moreGrades := [...]int{100, 55, 88, 96}
+```
+## Slices
+- Are referenced types.
+```go
+a := []int{2, 4, 6, 8, 10, 12, 14}
+b := a[3:] // Slice from 4th element to end.
+c := a[:5] // Slice first 5 elements
+
+x := make([] int, 3) // Making a slice (type, size)
+y := make([] int, 3, 100) // Making a slice (type, size, capacity)
+```
