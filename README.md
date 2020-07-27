@@ -45,3 +45,39 @@ var I int // Package variable
 #### Rune
 - UTF-32.
 - It is an alias for int32.
+
+## Constants
+### Naming convention
+In other languages, it is common to name a constant like this: MY_CONST.
+If we use this kind of notation in Go, the variable will be taken as a 'package variable'.
+Hence, the keyword 'const' is used and the name of the constant should be like any other variable.
+Also, it is not possible to create a constant with a run-time value:
+```go
+const myConst float64 = math.Sin(1.57) // Not possible. math.Sin(x) is executed in run-time.
+```
+### Typed constants
+```go
+const myConst int = 42
+```
+### Untyped constants
+The type is inferred.
+```go
+const myConst = 42
+```
+### Enumerated constants
+```go
+const ( 
+  a = iota
+  b
+  c
+)
+```
+### Enumeration expressions
+It assign the value dynamicallly.
+```go
+const ( 
+  a = iota + 5
+  b
+  c
+)
+```
