@@ -178,3 +178,61 @@ for {
   }
 }
 ```
+## Defer
+- Executes the passed function after the last statement of the function, but right before it actually returns.
+- Last in - First Out
+- It takes the value of the variables when the 'defer' is; if the variable is updated, it retains the original value.
+```go
+fmt.Println("Start")
+defer fmt.Println("Middle")
+fmt.Println("End")
+```
+
+## Panic
+- In Go, exceptions do not exist.
+```go
+fmt.Println("Start")
+panic("Something wrong happened")
+fmt.Println("End")
+```
+
+## Recover
+```go
+fmt.Println("Start")
+defer func() {
+	if err := recover(); err != nil {
+    log.Println("Error: ", err)
+    panic(err) // If the error is not controlable.
+	}
+}()
+panic("Something wrong happened")
+fmt.Println("End")
+```
+## Pointers
+- A pointer holds the memory location.
+- No pointer arithmetic, by default. It is posible using 'unssafe' package.
+```go
+var a int = 42
+var b *int = &a
+fmt.Println(a, b) // Prints address.
+fmt.Println(a, *b) // Prints value.
+* b = 100 // Updating value. (Dereferrencing pointers.)
+```
+## Functions
+```go
+func sayMessage(message string) {
+  fmt.Println(message)
+}
+
+func sum(values ...int) int { // Variable number of args
+  result := 0
+  for _, v := range values {
+    result += v
+  }
+  return result
+}
+
+func main() {
+  sayMessage("Hello Go!")
+}
+```
