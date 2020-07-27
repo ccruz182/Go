@@ -98,6 +98,13 @@ c := a[:5] // Slice first 5 elements
 x := make([] int, 3) // Making a slice (type, size)
 y := make([] int, 3, 100) // Making a slice (type, size, capacity)
 ```
+- Iterating using loops
+```go
+s := []int{0, 1, 2, 3}
+for k, v := range s {
+  fmt.Println(k, v)
+}
+```
 ## Maps
 - Key / Value (map[keyType]valueType).
 - Can be created with make function ( make(map[string]int) )
@@ -120,3 +127,54 @@ aDoctor := Doctor {
 ```
 ### Tags
 `required max:"100"`
+
+## Control Flow
+### If statement
+```go
+if true {
+  // Code
+}
+```
+### Switch
+```go
+switch 2:
+  case 1:
+    // Code 1
+  case 2:
+    // Code 2
+  default: 
+    // Default code
+```
+
+## Loops
+### For
+- Normal for
+```go
+for i := 0; i < 5; i +2 {
+  // Loop code
+}
+```
+- Using two variables
+```go
+for i, j := 0, 1; i < 5; i, j = i+1, j+2 {
+  fmt.Println(j)
+}
+```
+- Do - while
+```go
+for i < 5 {
+  fmt.Println(i)
+  i++
+}
+```
+- Infinite loop
+```go
+i := 0
+for {
+  fmt.Println(i)
+  i++
+  if i == 5 {
+    break
+  }
+}
+```
