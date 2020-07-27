@@ -98,3 +98,25 @@ c := a[:5] // Slice first 5 elements
 x := make([] int, 3) // Making a slice (type, size)
 y := make([] int, 3, 100) // Making a slice (type, size, capacity)
 ```
+## Maps
+- Key / Value (map[keyType]valueType).
+- Can be created with make function ( make(map[string]int) )
+- Referenced types.
+
+## Structs
+- No referenced types.
+```go
+type Doctor struct {
+  number int
+  actorName string
+  companions [] string
+}
+aDoctor := Doctor {
+  number: 3,
+  actorName: "Jon Pertwee",
+  companions: []string {"Liz Shaw", "Jo Grant"}
+}
+// aDoctor.actorName --> Access to struct's properties.
+```
+### Tags
+`required max:"100"`
