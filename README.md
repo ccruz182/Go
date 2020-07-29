@@ -297,3 +297,33 @@ type WriterCloser interface {
 ```go
 go myRoutine
 ```
+
+## Channels
+The channels were designed to synchronize data between goroutines.
+### Creating
+```go
+ch := make(chan int) // Creating a channel. It only accepts int values.
+ch2 := make(chan int, 50) // Creating a channel with buffer.
+```
+### Example
+```go
+var wg = sync.WaitGroup{}
+
+func main() {
+	ch := make(chan int)
+	wg.Add(2)
+	
+	go func() { // Receive function
+		i := <- ch
+		fmt.Println(i)
+		wg.Done()
+	}()
+	
+	go func() { // Send function
+		ch <- 42 // Copy of data.
+		wg.Done()
+	}()
+	
+	wg.Wait()
+}
+```
