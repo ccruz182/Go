@@ -236,3 +236,94 @@ func main() {
   sayMessage("Hello Go!")
 }
 ```
+
+## Interfaces
+The way interfaces are implemented in Go, is one of the reasons why Go applications tend to be maintainable and scalable.
+Interfaces do not describe data; instead they describe behaviour. It stores method definitions.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var w Writer = ConsoleWriter{}
+	w.Write([]byte("Hello Go!"))
+}
+
+type Writer interface {
+ 	Write([] byte) (int, error)
+}
+
+type ConsoleWriter struct {}
+
+func (cw ConsoleWriter) Write(data []byte) (int, error) {
+	n, err := fmt.Println(string(data))
+	return n, err
+}
+```
+### Composing interfaces
+```go
+type Writer interface {
+ 	Write([] byte) (int, error)
+}
+type Closer interface {
+ 	Close() error
+}
+type WriterCloser interface {
+  Writer
+  Closer
+}
+```
+
+### Best Practices
+- Use many, but small interfaces.
+  - Single method interfaces are some of the most powerful and flexible.
+- Do not export interfaces for types that will be consumed.
+- Do export interfaces for types that will be used by package.
+- Design functions and methods to receive interfaces whenever possible.
+
+## Go Routines
+- A routine enables to create efficent and highly concurrent applications.
+- A Go Routine is an abstraction of a Thread.
+- If you are writing a library, it is recommended to do not have routines.
+- It is posible to check race conditions at compile time with:
+  ```bash
+    go run --race myProgram.go
+  ```
+- A routine is created using the keyword `go`
+```go
+go myRoutine
+```
+
+## Channels
+The channels were designed to synchronize data between goroutines.
+### Creating
+```go
+ch := make(chan int) // Creating a channel. It only accepts int values.
+ch2 := make(chan int, 50) // Creating a channel with buffer.
+```
+### Example
+```go
+var wg = sync.WaitGroup{}
+
+func main() {
+	ch := make(chan int)
+	wg.Add(2)
+	
+	go func() { // Receive function
+		i := <- ch
+		fmt.Println(i)
+		wg.Done()
+	}()
+	
+	go func() { // Send function
+		ch <- 42 // Copy of data.
+		wg.Done()
+	}()
+	
+	wg.Wait()
+}
+```
